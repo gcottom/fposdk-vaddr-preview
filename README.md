@@ -18,4 +18,16 @@ make test
 
 No game, mods, or saves are required for the tests. This repository is a source preview, not the complete SDK or a production installer. It does not include the runtime integration, private test profiles, third-party game files, or the LoadForge extension.
 
+## Compatibility
+
+The preview's offline analysis does not inspect or require `Fallout4.exe`,
+F4SE, or an Address Library. It takes plugin bytes and the ordered dependency
+graph as inputs, not a game-version allowlist. The synthetic checks exercise
+both HEDR 0.95 and 1.0 inputs, confirm that the plugin is not rewritten, and
+reject a malformed record count. HEDR is plugin metadata, not a game build.
+
+Structural limits, FormID interpretation, and master validation still apply.
+This is not a claim of in-game compatibility on every build. The public
+preview cannot apply ESP-to-ESL changes or replace a VAddr runtime adapter.
+
 [Project and test notes](https://voidobscura.com/#fallout-tooling) · [LoadForge Studio on Nexus Mods](https://www.nexusmods.com/fallout4/mods/111745)

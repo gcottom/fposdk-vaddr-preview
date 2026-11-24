@@ -5,7 +5,7 @@ SOURCES = PluginHeader.cpp PluginGraph.cpp PluginFileScanner.cpp PluginFormID.cp
 
 .PHONY: test clean
 test: preview-tests
-	./preview-tests
+	@dir=$$(mktemp -d) && trap 'rm -f -- "$$dir/fixture.esp" "$$dir/bad.esp"; rmdir "$$dir"' EXIT && ./preview-tests "$$dir"
 
 preview-tests: preview-tests.cpp $(SOURCES) $(wildcard *.hpp)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o $@ preview-tests.cpp $(SOURCES) $(LDLIBS)
